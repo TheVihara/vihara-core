@@ -1,0 +1,7 @@
+subprojects {
+    group 'me.vihara.core.util'
+
+    dependencies {
+        api project(":util");
+    }
+}

@@ -1,0 +1,11 @@
+subprojects {
+    group 'me.vihara.core.config'
+
+    dependencies {
+        api project(":config");
+    }
+}
+
+dependencies {
+    api project(":file")
+}

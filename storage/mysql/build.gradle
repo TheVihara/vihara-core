@@ -1,0 +1,7 @@
+dependencies {
+    api group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
+    api group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+    api project(":util:optional")
+
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
+}

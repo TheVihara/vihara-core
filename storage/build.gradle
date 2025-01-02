@@ -1,0 +1,7 @@
+subprojects {
+    group 'me.vihara.core.storage'
+
+    dependencies {
+        api project(":storage");
+    }
+}
