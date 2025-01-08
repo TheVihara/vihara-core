@@ -25,6 +25,10 @@ public abstract class WrappedFile {
         onSave();
     }
 
+    public final String getName() {
+        return file.getName();
+    }
+
     protected abstract void onReload();
     protected abstract void onSave();
 }
