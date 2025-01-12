@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/command" />
+            <option value="$PROJECT_DIR$/command/bukkit" />
             <option value="$PROJECT_DIR$/config" />
             <option value="$PROJECT_DIR$/config/yaml" />
             <option value="$PROJECT_DIR$/file" />

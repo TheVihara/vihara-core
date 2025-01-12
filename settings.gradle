@@ -14,4 +14,6 @@ include 'impl-loader'
 include 'command'
 include 'util:color'
 findProject(':util:color')?.name = 'color'
+include 'command:bukkit'
+findProject(':command:bukkit')?.name = 'bukkit'
 
