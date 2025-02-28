@@ -43,7 +43,7 @@ public class YamlConfigFile extends ConfigFile {
             Map<String, Object> loadedData = yaml.load(inputStream);
             if (loadedData != null) {
                 config.getKeyValueMap().clear();
-                config.getKeyValueMap().putAll(parseMapToConfigBlock(loadedData));
+                config.getKeyValueMap().putAll(deserializeColumn(loadedData));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,21 +53,21 @@ public class YamlConfigFile extends ConfigFile {
     @Override
     protected void onSave() {
         try (FileWriter writer = new FileWriter(file)) {
-            yaml.dump(serializeConfigBlockToMap(config.getKeyValueMap()), writer);
+            yaml.dump(serializeColumn(config.getKeyValueMap()), writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @SuppressWarnings("unchecked")
-    private Map<String, Object> parseMapToConfigBlock(Map<String, Object> map) {
+    private Map<String, Object> deserializeColumn(Map<String, Object> map) {
         Map<String, Object> parsedMap = new LinkedHashMap<>();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             Object value = entry.getValue();
             if (value instanceof Map) {
-                ConfigColumn nestedBlock = new ConfigColumn();
-                nestedBlock.getKeyValueMap().putAll(parseMapToConfigBlock((Map<String, Object>) value));
-                parsedMap.put(entry.getKey(), nestedBlock);
+                ConfigColumn nestedColumn = new ConfigColumn();
+                nestedColumn.getKeyValueMap().putAll(deserializeColumn((Map<String, Object>) value));
+                parsedMap.put(entry.getKey(), nestedColumn);
             } else {
                 parsedMap.put(entry.getKey(), value);
             }
@@ -75,12 +75,12 @@ public class YamlConfigFile extends ConfigFile {
         return parsedMap;
     }
 
-    private LinkedHashMap<String, Object> serializeConfigBlockToMap(Map<String, Object> map) {
+    private LinkedHashMap<String, Object> serializeColumn(Map<String, Object> map) {
         LinkedHashMap<String, Object> serializedMap = new LinkedHashMap<>();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             Object value = entry.getValue();
             if (value instanceof ConfigColumn) {
-                serializedMap.put(entry.getKey(), serializeConfigBlockToMap(((ConfigColumn) value).getKeyValueMap()));
+                serializedMap.put(entry.getKey(), serializeColumn(((ConfigColumn) value).getKeyValueMap()));
             } else {
                 serializedMap.put(entry.getKey(), value);
             }
