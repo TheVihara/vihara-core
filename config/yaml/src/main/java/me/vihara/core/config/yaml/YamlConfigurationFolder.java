@@ -6,13 +6,13 @@ import me.vihara.core.file.WrappedFolder;
 
 import java.io.File;
 
-public class YamlConfigFolder extends WrappedFolder {
-    public YamlConfigFolder(@NonNull String path) {
+public class YamlConfigurationFolder extends WrappedFolder {
+    public YamlConfigurationFolder(@NonNull String path) {
         super(path);
     }
 
     @Override
     protected WrappedFile createWrappedFile(File file) {
-        return new YamlConfigFile(file.getPath());
+        return new YamlConfigurationFile(file.getPath());
     }
 }

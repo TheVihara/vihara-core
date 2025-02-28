@@ -12,6 +12,6 @@ public class ExampleCommand extends Command implements TabComplete {
 
     @Override
     public TabCompleter[] getTabCompletes() {
-        return ;
+        return null;
     }
 }

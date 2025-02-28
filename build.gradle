@@ -3,8 +3,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-def user = findProperty("repo.skykingdoms.user")
-def pass = findProperty("repo.skykingdoms.pass")
+def user = findProperty("nexus.astopia.user")
+def pass = findProperty("nexus.astopia.pass")
 
 allprojects {
     group 'me.vihara.core'
@@ -24,7 +24,7 @@ allprojects {
             url 'https://oss.sonatype.org/content/repositories/snapshots'
         }
         maven {
-            url = "https://repo.skykingdoms.net/repository/maven-releases/"
+            url = "https://nexus.astopia.net/repository/maven-releases/"
 
             credentials {
                 username = user
@@ -65,7 +65,7 @@ allprojects {
                     password = pass
                 }
 
-                url = "https://repo.skykingdoms.net/repository/maven-snapshots/"
+                url = "https://nexus.astopia.net/repository/maven-snapshots/"
             }
         }
 
